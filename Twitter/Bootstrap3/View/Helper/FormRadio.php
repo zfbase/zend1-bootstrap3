@@ -38,27 +38,6 @@ class Twitter_Bootstrap3_View_Helper_FormRadio extends Zend_View_Helper_FormRadi
     public function formRadio($name, $value = null, $attribs = null,
         $options = null, $listsep = "<br />\n")
     {
-//        $bClass = $this->_inputType;
-//        if (array_key_exists('inline', $attribs) && true == $attribs['inline']) {
-//            $bClass .= '-inline';
-//        }
-//        
-//        if (array_key_exists('label_class', $attribs)) {
-//            if (!in_array($bClass, explode(' ', $attribs['label_class']))) {
-//                $attribs['label_class'] = $bClass . ' ' . $attribs['label_class'];
-//            }
-//        } else {
-//            $attribs['label_class'] = $bClass;
-//        }
-//        
-//        if (array_key_exists('disabled', $attribs)) {
-//            $attribs['label_class'] .= ' disabled';
-//        }
-        
-        
-        
-        // <<<
-        
         $info = $this->_getInfo($name, $value, $attribs, $options, $listsep);
         extract($info); // name, value, attribs, options, listsep, disable
         
@@ -82,15 +61,6 @@ class Twitter_Bootstrap3_View_Helper_FormRadio extends Zend_View_Helper_FormRadi
             $attribs[$bAttrib] = $bClass;
         }
         
-        
-        
-        
-        
-        
-        
-        
-        
-
         // retrieve attributes for wrapper (prefixed with 'wrapper_' or 'wrapper')
         $wrapper_attribs = array();
         foreach ($attribs as $key => $val) {
@@ -200,7 +170,7 @@ class Twitter_Bootstrap3_View_Helper_FormRadio extends Zend_View_Helper_FormRadi
             // Wrap the radios in labels
             $radio = '<label'
                     . $this->_htmlAttribs($label_attribs) . '>'
-                    . (('prepend' == $labelPlacement) ? $opt_label : '')
+                    . (('prepend' == $labelPlacement) ? $opt_label . ' ' : '')
                     . '<input type="' . $this->_inputType . '"'
                     . ' name="' . $name . '"'
                     . ' id="' . $optId . '"'
@@ -209,7 +179,7 @@ class Twitter_Bootstrap3_View_Helper_FormRadio extends Zend_View_Helper_FormRadi
                     . $disabled
                     . $this->_htmlAttribs($attribs)
                     . $this->getClosingBracket()
-                    . (('append' == $labelPlacement) ? $opt_label : '')
+                    . (('append' == $labelPlacement) ? ' ' . $opt_label : '')
                     . '</label>';
             
             if (0 < count($wrapper_attribs)) {

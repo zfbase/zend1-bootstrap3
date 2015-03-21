@@ -18,6 +18,12 @@
 class Twitter_Bootstrap3_Form_Decorator_Feedback_State extends Twitter_Bootstrap3_Form_Decorator_Feedback
 {
     /**
+     *
+     * @var bool 
+     */
+    protected $_renderIcon = true;
+    
+    /**
      * Иконка по умолчанию для успешно провалидированного элемента
      * @var string
      */
@@ -47,7 +53,7 @@ class Twitter_Bootstrap3_Form_Decorator_Feedback_State extends Twitter_Bootstrap
         $attribs = $this->getOptions();
         $warning = $element->getAttrib('warning');
         
-        if (false === $this->getOption('renderIcon')) {
+        if (false === $this->isRenderIcon()) {
             return $content;
         } elseif ($element->hasErrors()) {
             $iconClass = $this->getErrorIcon();
@@ -77,55 +83,59 @@ class Twitter_Bootstrap3_Form_Decorator_Feedback_State extends Twitter_Bootstrap
         return parent::render($content);
     }
     
+    /**
+     * 
+     * @return bool
+     */
+    public function isRenderIcon()
+    {
+        if (null !== ($renderIcon = $this->getOption('renderIcon'))) {
+            $this->_renderIcon = $renderIcon;
+            $this->removeOption('renderIcon');
+        }
+        
+        return $this->_renderIcon;
+    }
+    
+    /**
+     * 
+     * @return string
+     */
     public function getSuccessIcon()
     {
         if (null !== ($icon = $this->getOption('successIcon'))) {
             $this->_successIcon = $icon;
+            $this->removeOption('successIcon');
         }
         
         return $this->_successIcon;
     }
     
-    public function setSuccessIcon($icon)
-    {
-        $this->_successIcon = $icon;
-        $this->removeOption('successIcon');
-        
-        return $this;
-    }
-    
+    /**
+     * 
+     * @return string
+     */
     public function getWarningIcon()
     {
         if (null !== ($icon = $this->getOption('warningIcon'))) {
             $this->_warningIcon = $icon;
+            $this->removeOption('warningIcon');
         }
         
         return $this->_warningIcon;
     }
     
-    public function setWarningIcon($icon)
-    {
-        $this->_warningIcon = $icon;
-        $this->removeOption('warningIcon');
-        
-        return $this;
-    }
-    
+    /**
+     * 
+     * @return string
+     */
     public function getErrorIcon()
     {
         if (null !== ($icon = $this->getOption('errorIcon'))) {
             $this->_errorIcon = $icon;
+            $this->removeOption('errorIcon');
         }
         
         return $this->_errorIcon;
     }
-    
-    public function setErrorIcon($icon)
-    {
-        $this->_errorIcon = $icon;
-        $this->removeOption('errorIcon');
-        
-        return $this;
-    }
-    
 }

@@ -18,6 +18,12 @@
 class Twitter_Bootstrap3_Form_Decorator_HorizontalControls extends Zend_Form_Decorator_HtmlTag
 {
     /**
+     * У элемента нету этикетки?
+     * @var bool 
+     */
+    protected $_noLabel = false;
+    
+    /**
      * Controls container dimension
      * @var string 
      */
@@ -47,14 +53,13 @@ class Twitter_Bootstrap3_Form_Decorator_HorizontalControls extends Zend_Form_Dec
             }
         }
         
-        if (true == $this->getOption('noLabel') || null == $element->getLabel()) {
+        if (true == $this->isNoLabel() || null == $element->getLabel()) {
             $dimensionLabel = $this->getDimensionLabel();
             if (!empty($dimensionLabel)) {
                 foreach (explode(',', $dimensionLabel) as $size) {
                     $class .= ' col-' . trim(str_replace('-', '-offset-', $size));
                 }
             }
-            $this->removeOption('noLabel');
         }
         
         if ('_File' == substr($element->getType(), -5)) {
@@ -67,6 +72,20 @@ class Twitter_Bootstrap3_Form_Decorator_HorizontalControls extends Zend_Form_Dec
         }
         
         return parent::render($content);
+    }
+    
+    /**
+     * У элемента нету этикетки?
+     * @return bool
+     */
+    public function isNoLabel()
+    {
+        if (null !== ($noLabel = $this->getOption('noLabel'))) {
+            $this->_noLabel = $noLabel;
+            $this->removeOption('noLabel');
+        }
+        
+        return $this->_noLabel;
     }
     
     /**

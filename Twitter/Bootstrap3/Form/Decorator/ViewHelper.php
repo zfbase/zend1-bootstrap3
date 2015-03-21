@@ -28,8 +28,10 @@ class Twitter_Bootstrap3_Form_Decorator_ViewHelper extends Zend_Form_Decorator_V
     {
         $attribs = parent::getElementAttribs();
         
-        unset($attribs['addon_append']);
-        unset($attribs['addon_prepend']);
+        unset($attribs['addon_append']);   // Twitter_Bootstrap3_Form_Decorator_Addon
+        unset($attribs['addon_prepend']);  // Twitter_Bootstrap3_Form_Decorator_Addon
+        unset($attribs['success']);        // Twitter_Bootstrap3_Form_Decorator_Container
+        unset($attribs['warning']);        // Twitter_Bootstrap3_Form_Decorator_Container
         
         return $attribs;
     }

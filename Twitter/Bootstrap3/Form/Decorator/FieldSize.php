@@ -17,6 +17,13 @@
  */
 class Twitter_Bootstrap3_Form_Decorator_FieldSize extends Zend_Form_Decorator_HtmlTag
 {
+    
+    /**
+     * Controls container dimension
+     * @var string 
+     */
+    protected $_dimension = null;
+    
     /**
      * Render container to appropiate size
      * 
@@ -27,7 +34,7 @@ class Twitter_Bootstrap3_Form_Decorator_FieldSize extends Zend_Form_Decorator_Ht
     {
         $element = $this->getElement();
         $class = $this->getOption('class');
-        $dimension = $element->getAttrib('dimension');
+        $dimension = $this->getDimension();
         
         if (!empty($dimension)) {
             if (is_string($dimension)) {
@@ -56,5 +63,24 @@ class Twitter_Bootstrap3_Form_Decorator_FieldSize extends Zend_Form_Decorator_Ht
         }
         
         return $content;
+    }
+    
+    /**
+     * Get dimension
+     * 
+     * @return null|string
+     */
+    public function getDimension()
+    {
+        $element = $this->getElement();
+        if (null !== ($dimension = $this->getOption('dimension'))) {
+            $this->_dimension = $dimension;
+            $this->removeOption('dimension');
+        } elseif (null !== ($dimension = $element->getAttrib('dimension'))) {
+            $this->_dimension = $dimension;
+            $element->setAttrib('dimensionLabel', null);
+        }
+        
+        return $this->_dimension;
     }
 }

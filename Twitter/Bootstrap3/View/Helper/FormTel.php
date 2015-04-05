@@ -34,6 +34,6 @@ class Twitter_Bootstrap3_View_Helper_FormTel extends Twitter_Bootstrap3_View_Hel
      */
     public function formTel($name, $value = null, $attribs = null)
     {
-        return $this->_formText('email', $name, $value, $attribs);
+        return $this->_formText('tel', $name, $value, $attribs);
     }
 }

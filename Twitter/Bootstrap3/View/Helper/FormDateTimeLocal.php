@@ -34,6 +34,8 @@ class Twitter_Bootstrap3_View_Helper_FormDateTimeLocal extends Twitter_Bootstrap
      */
     public function formDateTimeLocal($name, $value = null, $attribs = null)
     {
+        // Format SQL format to HTML5 format
+        $value = str_replace(' ', 'T', $value);
         return $this->_formText('datetime-local', $name, $value, $attribs);
     }
 }

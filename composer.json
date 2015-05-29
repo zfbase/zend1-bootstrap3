@@ -1,0 +1,13 @@
+{
+    "name": "IlyaSerdyuk/zend1-bootstrap3",
+    "description": "Twitter Bootstrap v.3 Forms for Zend Framework v.1",
+    "require": {
+        "php": ">=5.3.0",
+        "zendframework/zendframework1": "~1"
+    },
+    "autoload": {
+        "psr-0": { "Twitter_Bootstrap3_": "library/" }
+    },
+    "license": "MIT",
+    "include-path": ["library/"]
+}

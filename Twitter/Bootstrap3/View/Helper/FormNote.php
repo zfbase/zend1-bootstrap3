@@ -42,9 +42,11 @@ class Twitter_Bootstrap3_View_Helper_FormNote extends Zend_View_Helper_FormNote
             $attribs['class'] = 'form-control-static';
         }
         
+        $value = ($escape) ? $this->view->escape($value) : $value;
+        
         $xhtml = '<p'
                . $this->_htmlAttribs($attribs) . '>'
-               . $this->view->escape($value) . '</p>';
+               . $value . '</p>';
 
         return $xhtml;
     }

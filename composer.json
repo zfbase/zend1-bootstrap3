@@ -9,5 +9,15 @@
         "psr-0": { "Twitter_Bootstrap3_": "library/" }
     },
     "license": "MIT",
-    "include-path": ["library/"]
+    "include-path": ["library/"],
+    "keywords": [
+        "zf1",
+        "zend",
+        "zend form",
+        "zend form decorators",
+        "form",
+        "twitter",
+        "bootstrap",
+        "twitter bootstrap"
+    ]
 }

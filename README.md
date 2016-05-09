@@ -424,5 +424,70 @@ $this->addElement('static', 'static', array(
 ));
 ```
 
+### File
+
+Include support for file upload fields. Make shure to add the file "patch.css" to your html for correct styling!
+
+```html
+<div class="form-group">
+	<label class="control-label required" for="ID">Label Text</label>
+	<input type="hidden" id="MAX_FILE_SIZE" value="134217728" name="MAX_FILE_SIZE">
+	<div class="spacer"></div>
+	<div class="input-group">
+		<span class="input-group-btn">
+			<span class="btn btn-primary btn-file">
+				Btn Text<input type="file" btntext="Btn Text" id="ID" name="ID">
+			</span>
+		</span>
+		<input type="text" readonly="" class="form-control">
+	</div>
+	<p class="help-block">Help-Text</p>
+</div>
+```
+
+```php
+$this->addElement('file', 'ID', array(
+	'label' => 'Label Text',
+	'description' => 'Help-Text',
+	'required' => true,
+	'btnText' => 'Btn Text'
+));
+
+// Optional settings
+$uploadField = $this->getElement('ID');
+$uploadField->setDestination('path/to/uploads-dir');
+$uploadField->addValidator('Count', false, 1); // just one file
+$uploadField->addValidator('Size', false, 1048576); // 1MB upload limit
+$uploadField->addValidator('Extension', false, 'jpg,png,gif'); // jpg, png and gif
+```
+
+Add this little jQuery snippet for better handling (http://codepen.io/claviska/pen/vAgmd)
+
+```js
+$(document).ready(function() {
+	// Custom bootstrap file upload
+	$(document).on('change', '.btn-file :file', function() {
+		var input = $(this);
+		var numFiles = input.get(0).files ? input.get(0).files.length : 1;
+		var label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+		input.trigger('fileselect', [numFiles, label]);
+	});
+
+	$('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+		var input = $(this).parents('.input-group').find(':text');
+		var log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+		if (input.length) {
+			input.val(log);
+		} else {
+			if (log) {
+				console.log(log);
+			}
+		}
+
+	});
+});
+```
+
 ### Other decorated elements
 The library also contains elements for decorators: `file`, `hidden`, `hash` and `captcha`.

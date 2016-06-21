@@ -32,7 +32,7 @@ class Application_Form_Example extends Twitter_Bootstrap3_Form_*
     }
 }
 ```
-## OR
+#### OR
 
 ```php
 class Application_Form_Example extends Twitter_Bootstrap3_Form_*

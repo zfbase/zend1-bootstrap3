@@ -5,6 +5,34 @@
 The library supports all Bootstrap 3 form types.
 
 ### One PHP code
+```php
+class Application_Form_Example extends Twitter_Bootstrap3_Form_*
+{
+    public function init()
+    {
+        $email = new Twitter_Bootstrap3_Form_Element_Email('email');
+        $email->setLabel('Email')->setAttrib('placeholder', 'Email');
+
+        $password = new Zend_Form_Element_Password('password');
+        $password->setLabel('Password')->setAttrib('placeholder', 'Password');
+
+        $checkbox = new Zend_Form_Element_Checkbox('checkbox');
+        $checkbox->setLabel('Remember me');
+
+        $submit = new Zend_Form_Element_Submit('submit');
+        $submit->setLabel('Sign in');
+
+        $this->addElements(array(
+            $email,
+            $password,
+            $checkbox,
+            $submit1
+
+        ));
+    }
+}
+```
+## OR
 
 ```php
 class Application_Form_Example extends Twitter_Bootstrap3_Form_*

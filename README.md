@@ -26,7 +26,7 @@ class Application_Form_Example extends Twitter_Bootstrap3_Form_*
             $email,
             $password,
             $checkbox,
-            $submit1
+            $submit
 
         ));
     }

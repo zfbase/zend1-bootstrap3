@@ -366,6 +366,72 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
         
         return parent::createElement($type, $name, $options);
     }
+
+    /**
+     * Add a new element
+     *
+     * $element may be either a string element type, or an object of type
+     * Zend_Form_Element. If a string element type is provided, $name must be
+     * provided, and $options may be optionally provided for configuring the
+     * element.
+     *
+     * If a Zend_Form_Element is provided, $name may be optionally provided,
+     * and any provided $options will be ignored.
+     *
+     * @param  string|Zend_Form_Element $element
+     * @param  string $name
+     * @param  array|Zend_Config $options
+     * @throws Zend_Form_Exception on invalid element
+     * @return Zend_Form
+     */
+    public function addElement($element, $name = null, $options = null)
+    {
+        if ($element instanceof Zend_Form_Element) {
+            $type = lcfirst(str_replace('Twitter_Bootstrap3_Form_Element_', '', $element->getType()));
+
+            if (null !== $options && $options instanceof Zend_Config) {
+                $options = $options->toArray();
+            }
+
+            // Load default decorators
+            if ((null === $options) || !is_array($options)) {
+                $options = array();
+            }
+
+            if (!array_key_exists('decorators', $options)) {
+                $decorators = $this->getDefaultDecoratorsByElementType($type);
+                if (!empty($decorators)) {
+                    $options['decorators'] = $decorators;
+                }
+            }
+
+            // Elements type use 'form-control' class
+            $element_fc = array(
+                // all input:
+                'text', 'password', 'dateTime', 'dateTimeLocal', 'date', 'month',
+                'time', 'week', 'number', 'email', 'url', 'search', 'tel', 'color',
+                // and other:
+                'textarea', 'select', 'multiselect',
+            );
+            if (in_array($type, $element_fc)) {
+                if (null === $options) {
+                    $options = array('class' => 'form-control');
+                } elseif (array_key_exists('class', $options)) {
+                    if (!strstr($options['class'], 'form-control')) {
+                        $options['class'] .= ' form-control';
+                        $options['class'] = trim($options['class']);
+                    }
+                } else {
+                    $options['class'] = 'form-control';
+                }
+            }
+
+            $element->setOptions($options);
+
+        }
+
+        parent::addElement($element, $name, $options);
+    }
     
     /**
      * Retrieve a registered decorator for type element

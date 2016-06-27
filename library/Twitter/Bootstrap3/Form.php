@@ -100,6 +100,12 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
      * @var array 
      */
     protected $_simpleElementDecorators;
+
+    /**
+     * Global decorators to apply to all elements type file
+     * @var array
+     */
+    protected $_fileElementDecorators;
     
     /**
      * Global decorators to apply to all elements type checkbox
@@ -188,7 +194,8 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
         $this->_checkboxDecorators = $this->getDefaultCheckboxDecorators();
         $this->_buttonsDecorators = $this->getDefaultButtonsDecorators();
         $this->_imageDecorators = $this->getDefaultImageDecorators();
-        
+        $this->_fileElementDecorators = $this->getDefaultFileElementDecorators();
+
         return $this;
     }
     
@@ -201,6 +208,35 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
     {
         return array(
             array('ViewHelper'),
+            array('Addon'),
+            array('Feedback_State', array(
+                'renderIcon' => $this->_renderElementsStateIcons,
+                'successIcon' => $this->_elementsSuccessIcon,
+                'warningIcon' => $this->_elementsWarningIcon,
+                'errorIcon' => $this->_elementsErrorIcon,
+            )),
+            array('Errors'),
+            array('Description', array(
+                'tag' => 'p',
+                'class' => 'help-block',
+            )),
+            array('Label', array(
+                'class' => 'control-label',
+            )),
+            array('Container'),
+            array('FieldSize'),
+        );
+    }
+
+    /**
+     * Retrieve all decorators for file type elements
+     *
+     * @return array
+     */
+    public function getDefaultFileElementDecorators()
+    {
+        return array(
+            array('File'),
             array('Addon'),
             array('Feedback_State', array(
                 'renderIcon' => $this->_renderElementsStateIcons,
@@ -474,7 +510,12 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
                 }
                 break;
             case 'note':  case 'static':    case 'select':  case 'multiselect':    
-            case 'file':  case 'textarea':  case 'radio':   case 'multiCheckbox': 
+            case 'file':
+                if (is_array($this->_fileElementDecorators)) {
+                    return $this->_fileElementDecorators;
+                }
+                break;
+            case 'textarea':  case 'radio':   case 'multiCheckbox':
                 if (is_array($this->_simpleElementDecorators)) {
                     $decorators = $this->_simpleElementDecorators;
                     $removeI = null;

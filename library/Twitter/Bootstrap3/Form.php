@@ -509,12 +509,12 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
                     return $this->_simpleElementDecorators;
                 }
                 break;
-            case 'note':  case 'static':    case 'select':  case 'multiselect':    
             case 'file':
                 if (is_array($this->_fileElementDecorators)) {
                     return $this->_fileElementDecorators;
                 }
                 break;
+            case 'note':  case 'static':    case 'select':  case 'multiselect':
             case 'textarea':  case 'radio':   case 'multiCheckbox':
                 if (is_array($this->_simpleElementDecorators)) {
                     $decorators = $this->_simpleElementDecorators;

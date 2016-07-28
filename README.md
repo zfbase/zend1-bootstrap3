@@ -1,3 +1,4 @@
+[![PHP version](https://badge.fury.io/ph/wendrowycz%2Fzend1-bootstrap3.svg)](https://badge.fury.io/ph/wendrowycz%2Fzend1-bootstrap3)
 #Twitter Bootstrap 3 Form for Zend Framework 1
 
 ## Form types

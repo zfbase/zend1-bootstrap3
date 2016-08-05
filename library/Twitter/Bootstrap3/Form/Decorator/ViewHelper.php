@@ -33,6 +33,11 @@ class Twitter_Bootstrap3_Form_Decorator_ViewHelper extends Zend_Form_Decorator_V
         unset($attribs['success']);        // Twitter_Bootstrap3_Form_Decorator_Container
         unset($attribs['warning']);        // Twitter_Bootstrap3_Form_Decorator_Container
         
+		//Remove dimensions if any
+		unset($attribs['dimensionLabel']);
+		unset($attribs['dimensionControls']);
+		unset($attribs['dimension']);
+        
         return $attribs;
     }
 }

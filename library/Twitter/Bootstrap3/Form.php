@@ -424,7 +424,8 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
     {
         if ($element instanceof Zend_Form_Element) {
             // type string
-            $type = lcfirst(trim(end(explode('_', $element->getType()))));
+			$exploderesult = explode('_', $element->getType());
+            $type = lcfirst(trim(end($exploderesult)));
 
             if (null !== $options && $options instanceof Zend_Config) {
                 $options = $options->toArray();

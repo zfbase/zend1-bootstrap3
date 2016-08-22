@@ -32,7 +32,7 @@ class Twitter_Bootstrap3_View_Helper_FormReset extends Zend_View_Helper_FormRese
      *
      * @return string The element XHTML.
      */
-    public function formReset($name, $value = null, $attribs = null)
+    public function formReset($name = '', $value = 'Reset', $attribs = NULL)
     {
         if (isset($attribs['class'])) {
             $attribs['class'] = 'btn ' . $attribs['class'];

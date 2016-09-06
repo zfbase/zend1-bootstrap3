@@ -434,6 +434,10 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
             // Load default decorators
             if ((null === $options) || !is_array($options)) {
                 $options = array();
+		//Class is maybe not properly transfered to this element. We'll add class if it exists here.
+		if($element->class){
+			$options['class'] = $element->class;
+		}
             }
 
             if (!array_key_exists('decorators', $options)) {

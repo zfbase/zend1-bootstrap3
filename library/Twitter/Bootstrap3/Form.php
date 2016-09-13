@@ -219,6 +219,7 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
             array('Description', array(
                 'tag' => 'p',
                 'class' => 'help-block',
+				'escape' => false,
             )),
             array('Label', array(
                 'class' => 'control-label',
@@ -248,6 +249,7 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
             array('Description', array(
                 'tag' => 'p',
                 'class' => 'help-block',
+				'escape' => false,
             )),
             array('Label', array(
                 'class' => 'control-label',
@@ -269,6 +271,7 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
             array('Description', array(
                 'tag' => 'p',
                 'class' => 'help-block',
+				'escape' => false,
             )),
             array('Label', array(
                 'class' => 'control-label',
@@ -292,6 +295,7 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
             array('Description', array(
                 'tag' => 'p',
                 'class' => 'help-block',
+				'escape' => false,
             )),
             array('CheckboxControls'),
             array('Container'),
@@ -311,6 +315,7 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
             array('Description', array(
                 'tag' => 'p',
                 'class' => 'help-block',
+				'escape' => false,
             )),
             array('ViewHelper'),
             array('Container'),
@@ -330,6 +335,7 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
             array('Description', array(
                 'tag' => 'p',
                 'class' => 'help-block',
+				'escape' => false,
             )),
             array('Image'),
             array('Errors'),

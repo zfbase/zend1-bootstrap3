@@ -50,6 +50,38 @@ class Twitter_Bootstrap3_Form_Horizontal extends Twitter_Bootstrap3_Form
             array('FieldSize'),
         );
     }
+	
+    /**
+     * Retrieve all decorators for file type elements
+     *
+     * @return array
+     */
+    public function getDefaultFileElementDecorators()
+    {
+        return array(
+            array('File'),
+            array('Addon'),
+            array('Feedback_State', array(
+                'renderIcon' => $this->_renderElementsStateIcons,
+                'successIcon' => $this->_elementsSuccessIcon,
+                'warningIcon' => $this->_elementsWarningIcon,
+                'errorIcon' => $this->_elementsErrorIcon,
+            )),
+            array('Errors'),
+            array('Description', array(
+                'tag' => 'p',
+                'class' => 'help-block',
+				'escape' => false,
+            )),
+            array('Label', array(
+                'class' => 'control-label',
+            )),
+            array('HorizontalControls'),
+            array('HorizontalLabel'),
+            array('Container'),
+            array('FieldSize'),
+        );
+    }
     
     /**
      * Retrieve all decorators for all captcha elements

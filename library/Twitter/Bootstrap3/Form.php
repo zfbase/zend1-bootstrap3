@@ -23,6 +23,7 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
     const DISPOSITION_HORIZONTAL = 'horizontal';
     const DISPOSITION_VERTICAL   = 'vertical';
     const DISPOSITION_INLINE     = 'inline';
+    const DISPOSITION_INLINE_LABEL = 'inlinelabel';
     
     /**
      * Disposition type class
@@ -32,6 +33,7 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
         self::DISPOSITION_HORIZONTAL => 'form-horizontal',
         self::DISPOSITION_VERTICAL => 'form-vertical',
         self::DISPOSITION_INLINE => 'form-inline',
+        self::DISPOSITION_INLINE_LABEL => 'form-inline',
     );
     
     /**

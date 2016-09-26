@@ -236,6 +236,18 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
      *
      * @return array
      */
+    public function getDefaultHtmlElementDecorators()
+    {
+        return array(
+            array('ViewHelper'),
+        );
+    }
+	
+    /**
+     * Retrieve all decorators for file type elements
+     *
+     * @return array
+     */
     public function getDefaultFileElementDecorators()
     {
         return array(
@@ -527,7 +539,9 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
                     return $this->_fileElementDecorators;
                 }
                 break;
-            case 'note':  case 'static':    case 'select':  case 'multiselect':
+			case 'html':
+				return array('ViewHelper');
+            case 'note':  case 'static':    case 'select':  case 'multiselect': 
             case 'textarea':  case 'radio':   case 'multiCheckbox':
                 if (is_array($this->_simpleElementDecorators)) {
                     $decorators = $this->_simpleElementDecorators;

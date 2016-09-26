@@ -46,6 +46,10 @@ class Twitter_Bootstrap3_View_Helper_FormSubmit extends Zend_View_Helper_FormSub
             $attribs['class'] .= ' btn-primary';
         }
         
+        if (isset($attribs['noRenderName']) && $attribs['noRenderName'] == true) {
+            $name = null;
+        }
+        
         return parent::formSubmit($name, $value, $attribs);
     }
 }

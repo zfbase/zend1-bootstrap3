@@ -9,6 +9,7 @@
  */
 
 /**
+ * Helper to generate a "html" element
  * 
  * @category Forms
  * @package Twitter_Bootstrap3_View

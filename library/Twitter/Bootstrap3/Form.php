@@ -230,18 +230,6 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
             array('FieldSize'),
         );
     }
-
-    /**
-     * Retrieve all decorators for file type elements
-     *
-     * @return array
-     */
-    public function getDefaultHtmlElementDecorators()
-    {
-        return array(
-            array('ViewHelper'),
-        );
-    }
 	
     /**
      * Retrieve all decorators for file type elements

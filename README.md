@@ -156,6 +156,26 @@ The form must be inherited from class `Twitter_Bootstrap3_Form_Inline`.
 </form>
 ```
 
+To use inlineforms with labels you can use the class `Twitter_Bootstrap3_Form_Inlinelabel`.
+
+If you are using inline forms, the dimensions will not be set of course. If you need dimensions, you can add them using the attribute formgroupclass like this:
+
+```php
+
+		$count = new Twitter_Bootstrap3_Form_Element_Number('count');
+		$count->setAttrib('formgroupclass','col-xs-6');
+
+```
+
+This will give you the following output:
+
+```html
+    <div class="form-group col-xs-6">
+        <input type="number" name="count" id="count" value="" class="form-control">
+    </div>
+```
+
+
 ## Supported controls
 
 The library supports all Zend Framework 1 and Bootstrap 3 form elementes.

@@ -1,5 +1,7 @@
-[![PHP version](https://badge.fury.io/ph/wendrowycz%2Fzend1-bootstrap3.svg)](https://badge.fury.io/ph/wendrowycz%2Fzend1-bootstrap3)
-#Twitter Bootstrap 3 Form for Zend Framework 1
+#Twitter Bootstrap 3 Form for Zend Framework 1 extended
+
+This library was originally created by @zfbase and forked by @wendrowycz
+This is an extended version, adding an HTML element, inline form option with labels, form-group class option and more.
 
 ## Form types
 

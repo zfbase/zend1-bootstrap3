@@ -1,5 +1,5 @@
 {
-    "name": "Cruiser13/zend1-bootstrap3",
+    "name": "cruiser13/zend1-bootstrap3",
     "description": "Twitter Bootstrap v.3 Forms for Zend Framework v.1 extended",
     "require": {
         "php": ">=5.3.0",

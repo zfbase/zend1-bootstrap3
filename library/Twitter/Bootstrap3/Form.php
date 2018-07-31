@@ -447,7 +447,7 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
      */
     public function setDisposition($disposition)
     {
-        if (array_key_exists($disposition, self::$_dispositionClasses)) {
+        if (array_key_exists($disposition, static::$_dispositionClasses)) {
             $this->_disposition = $disposition;
         }
         
@@ -463,7 +463,7 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
     public function getDisposition()
     {
         if (null !== ($disposition = $this->getAttrib('disposition'))) {
-            if (in_array($disposition, self::$_dispositionClasses)) {
+            if (in_array($disposition, static::$_dispositionClasses)) {
                 $this->_disposition = $disposition;
                 $this->removeAttrib('disposition');
             } else {
@@ -483,7 +483,7 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
     public function render(Zend_View_Interface $view = null)
     {
         if (null !== ($disposition = $this->getDisposition())) {
-            $this->addClass(self::$_dispositionClasses[$disposition]);
+            $this->addClass(static::$_dispositionClasses[$disposition]);
         }
         
         return parent::render();

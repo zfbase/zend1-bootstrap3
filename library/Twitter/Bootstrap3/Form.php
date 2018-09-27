@@ -349,6 +349,25 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
             }
         }
         
+        // Helpers: element options: [ 'decorator/option' => value ]
+        foreach ($options as $optionKey => $optionValue) {
+            $keys = explode('/', $optionKey);
+            
+            if (2 != count($keys)) {
+                continue;
+            }
+            
+            $decorator = $keys[0];
+            $option = $keys[1];
+            
+            foreach ($options['decorators'] as & $setting) {
+                if ($decorator == $setting[0]) {
+                    $setting[1][$option] = $optionValue;
+                    unset($options[$optionKey]);
+                }
+            }
+        }
+        
 //        // Button use 'btn' class
 //        $btnTypres = array('button', 'submit', 'reset', 'image');
 //        if (in_array($type, $btnTypres)) {

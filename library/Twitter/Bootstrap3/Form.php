@@ -208,6 +208,7 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
                 'warningIcon' => $this->_elementsWarningIcon,
                 'errorIcon' => $this->_elementsErrorIcon,
             )),
+            array('Warnings'),
             array('Errors'),
             array('Description', array(
                 'tag' => 'p',
@@ -229,6 +230,7 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
     public function getDefaultCaptchaDecorators()
     {
         return array(
+            array('Warnings'),
             array('Errors'),
             array('Description', array(
                 'tag' => 'p',
@@ -252,6 +254,7 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
         return array(
             array('ViewHelper'),
             array('CheckboxLabel'),
+            array('Warnings'),
             array('Errors'),
             array('Description', array(
                 'tag' => 'p',
@@ -296,6 +299,7 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
                 'class' => 'help-block',
             )),
             array('Image'),
+            array('Warnings'),
             array('Errors'),
             array('Container'),
             array('FieldSize'),

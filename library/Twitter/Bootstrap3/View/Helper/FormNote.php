@@ -44,10 +44,12 @@ class Twitter_Bootstrap3_View_Helper_FormNote extends Zend_View_Helper_FormNote
         
         $escape = array_key_exists('escape', $attribs) ? (bool) $attribs['escape'] : true;
         $value = ($escape) ? $this->view->escape($value) : $value;
+
+        $tag = !empty($attribs['tag']) ? $attribs['tag'] : 'p';
         
-        $xhtml = '<p'
+        $xhtml = '<' . $tag
                . $this->_htmlAttribs($attribs) . '>'
-               . $value . '</p>';
+               . $value . '</' . $tag . '>';
 
         return $xhtml;
     }

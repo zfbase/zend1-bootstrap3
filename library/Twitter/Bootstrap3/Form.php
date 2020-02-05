@@ -23,6 +23,7 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
     const DISPOSITION_HORIZONTAL = 'horizontal';
     const DISPOSITION_VERTICAL   = 'vertical';
     const DISPOSITION_INLINE     = 'inline';
+    const DISPOSITION_INLINE_LABEL = 'inlinelabel';
     
     /**
      * Disposition type class
@@ -32,6 +33,7 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
         self::DISPOSITION_HORIZONTAL => 'form-horizontal',
         self::DISPOSITION_VERTICAL => 'form-vertical',
         self::DISPOSITION_INLINE => 'form-inline',
+        self::DISPOSITION_INLINE_LABEL => 'form-inline',
     );
     
     /**
@@ -100,6 +102,12 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
      * @var array 
      */
     protected $_simpleElementDecorators;
+
+    /**
+     * Global decorators to apply to all elements type file
+     * @var array
+     */
+    protected $_fileElementDecorators;
     
     /**
      * Global decorators to apply to all elements type checkbox
@@ -188,7 +196,8 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
         $this->_checkboxDecorators = $this->getDefaultCheckboxDecorators();
         $this->_buttonsDecorators = $this->getDefaultButtonsDecorators();
         $this->_imageDecorators = $this->getDefaultImageDecorators();
-        
+        $this->_fileElementDecorators = $this->getDefaultFileElementDecorators();
+
         return $this;
     }
     
@@ -213,6 +222,37 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
             array('Description', array(
                 'tag' => 'p',
                 'class' => 'help-block',
+				'escape' => false,
+            )),
+            array('Label', array(
+                'class' => 'control-label',
+            )),
+            array('Container'),
+            array('FieldSize'),
+        );
+    }
+	
+    /**
+     * Retrieve all decorators for file type elements
+     *
+     * @return array
+     */
+    public function getDefaultFileElementDecorators()
+    {
+        return array(
+            array('File'),
+            array('Addon'),
+            array('Feedback_State', array(
+                'renderIcon' => $this->_renderElementsStateIcons,
+                'successIcon' => $this->_elementsSuccessIcon,
+                'warningIcon' => $this->_elementsWarningIcon,
+                'errorIcon' => $this->_elementsErrorIcon,
+            )),
+            array('Errors'),
+            array('Description', array(
+                'tag' => 'p',
+                'class' => 'help-block',
+				'escape' => false,
             )),
             array('Label', array(
                 'class' => 'control-label',
@@ -235,6 +275,7 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
             array('Description', array(
                 'tag' => 'p',
                 'class' => 'help-block',
+				'escape' => false,
             )),
             array('Label', array(
                 'class' => 'control-label',
@@ -259,6 +300,7 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
             array('Description', array(
                 'tag' => 'p',
                 'class' => 'help-block',
+				'escape' => false,
             )),
             array('CheckboxControls'),
             array('Container'),
@@ -278,6 +320,7 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
             array('Description', array(
                 'tag' => 'p',
                 'class' => 'help-block',
+				'escape' => false,
             )),
             array('ViewHelper'),
             array('Container'),
@@ -297,6 +340,7 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
             array('Description', array(
                 'tag' => 'p',
                 'class' => 'help-block',
+				'escape' => false,
             )),
             array('Image'),
             array('Warnings'),
@@ -389,6 +433,78 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
         
         return parent::createElement($type, $name, $options);
     }
+
+    /**
+     * Add a new element
+     *
+     * $element may be either a string element type, or an object of type
+     * Zend_Form_Element. If a string element type is provided, $name must be
+     * provided, and $options may be optionally provided for configuring the
+     * element.
+     *
+     * If a Zend_Form_Element is provided, $name may be optionally provided,
+     * and any provided $options will be ignored.
+     *
+     * @param  string|Zend_Form_Element $element
+     * @param  string $name
+     * @param  array|Zend_Config $options
+     * @throws Zend_Form_Exception on invalid element
+     * @return Zend_Form
+     */
+    public function addElement($element, $name = null, $options = null)
+    {
+        if ($element instanceof Zend_Form_Element) {
+            // type string
+			$exploderesult = explode('_', $element->getType());
+            $type = lcfirst(trim(end($exploderesult)));
+
+            if (null !== $options && $options instanceof Zend_Config) {
+                $options = $options->toArray();
+            }
+
+            // Load default decorators
+            if ((null === $options) || !is_array($options)) {
+                $options = array();
+		//Class is maybe not properly transfered to this element. We'll add class if it exists here.
+		if($element->class){
+			$options['class'] = $element->class;
+		}
+            }
+
+            if (!array_key_exists('decorators', $options)) {
+                $decorators = $this->getDefaultDecoratorsByElementType($type);
+                if (!empty($decorators)) {
+                    $options['decorators'] = $decorators;
+                }
+            }
+
+            // Elements type use 'form-control' class
+            $element_fc = array(
+                // all input:
+                'text', 'password', 'dateTime', 'dateTimeLocal', 'date', 'month',
+                'time', 'week', 'number', 'email', 'url', 'search', 'tel', 'color',
+                // and other:
+                'textarea', 'select', 'multiselect',
+            );
+            if (in_array($type, $element_fc)) {
+                if (null === $options) {
+                    $options = array('class' => 'form-control');
+                } elseif (array_key_exists('class', $options)) {
+                    if (!strstr($options['class'], 'form-control')) {
+                        $options['class'] .= ' form-control';
+                        $options['class'] = trim($options['class']);
+                    }
+                } else {
+                    $options['class'] = 'form-control';
+                }
+            }
+
+            $element->setOptions($options);
+
+        }
+
+        parent::addElement($element, $name, $options);
+    }
     
     /**
      * Retrieve a registered decorator for type element
@@ -429,8 +545,15 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
                     return $this->_simpleElementDecorators;
                 }
                 break;
-            case 'note':  case 'static':    case 'select':  case 'multiselect':    
-            case 'file':  case 'textarea':  case 'radio':   case 'multiCheckbox': 
+            case 'file':
+                if (is_array($this->_fileElementDecorators)) {
+                    return $this->_fileElementDecorators;
+                }
+                break;
+			case 'html':
+				return array('ViewHelper');
+            case 'note':  case 'static':    case 'select':  case 'multiselect': 
+            case 'textarea':  case 'radio':   case 'multiCheckbox':
                 if (is_array($this->_simpleElementDecorators)) {
                     $decorators = $this->_simpleElementDecorators;
                     $removeI = null;

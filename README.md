@@ -1,10 +1,41 @@
-#Twitter Bootstrap 3 Form for Zend Framework 1
+#Twitter Bootstrap 3 Form for Zend Framework 1 extended
+
+This library was originally created by @zfbase and forked by @wendrowycz
+This is an extended version, adding an HTML element, inline form option with labels, form-group class option and more.
 
 ## Form types
 
 The library supports all Bootstrap 3 form types.
 
 ### One PHP code
+```php
+class Application_Form_Example extends Twitter_Bootstrap3_Form_*
+{
+    public function init()
+    {
+        $email = new Twitter_Bootstrap3_Form_Element_Email('email');
+        $email->setLabel('Email')->setAttrib('placeholder', 'Email');
+
+        $password = new Zend_Form_Element_Password('password');
+        $password->setLabel('Password')->setAttrib('placeholder', 'Password');
+
+        $checkbox = new Zend_Form_Element_Checkbox('checkbox');
+        $checkbox->setLabel('Remember me');
+
+        $submit = new Zend_Form_Element_Submit('submit');
+        $submit->setLabel('Sign in');
+
+        $this->addElements(array(
+            $email,
+            $password,
+            $checkbox,
+            $submit
+
+        ));
+    }
+}
+```
+#### OR
 
 ```php
 class Application_Form_Example extends Twitter_Bootstrap3_Form_*
@@ -126,6 +157,26 @@ The form must be inherited from class `Twitter_Bootstrap3_Form_Inline`.
     </div>
 </form>
 ```
+
+To use inlineforms with labels you can use the class `Twitter_Bootstrap3_Form_Inlinelabel`.
+
+If you are using inline forms, the dimensions will not be set of course. If you need dimensions, you can add them using the attribute formgroupclass like this:
+
+```php
+
+		$count = new Twitter_Bootstrap3_Form_Element_Number('count');
+		$count->setAttrib('formgroupclass','col-xs-6');
+
+```
+
+This will give you the following output:
+
+```html
+    <div class="form-group col-xs-6">
+        <input type="number" name="count" id="count" value="" class="form-control">
+    </div>
+```
+
 
 ## Supported controls
 

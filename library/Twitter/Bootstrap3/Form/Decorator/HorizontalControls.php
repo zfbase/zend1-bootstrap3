@@ -57,7 +57,7 @@ class Twitter_Bootstrap3_Form_Decorator_HorizontalControls extends Zend_Form_Dec
             $dimensionLabel = $this->getDimensionLabel();
             if (!empty($dimensionLabel)) {
                 foreach (explode(',', $dimensionLabel) as $size) {
-                    $class .= ' col-' . trim(str_replace('-', '-offset-', $size));
+                    $class .= ' col-' . trim(preg_replace('/(-)([0-9]+)/', '-offset-$2', $size));
                 }
             }
         }

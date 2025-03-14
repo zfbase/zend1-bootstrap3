@@ -56,7 +56,7 @@ class Twitter_Bootstrap3_Form_Decorator_Feedback extends Zend_Form_Decorator_Htm
         $element = $this->getElement();
         $container = $element->getDecorator('Container');
         if (!empty($container)) {
-            $classes = explode(' ', $container->getOption('class'));
+            $classes = explode(' ', $container->getOption('class') || '');
             if (!in_array('has-feedback', $classes)) {
                 array_push($classes, 'has-feedback');
             }

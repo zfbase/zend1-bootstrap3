@@ -503,7 +503,7 @@ abstract class Twitter_Bootstrap3_Form extends Zend_Form
      * @param  Zend_View_Interface $view
      * @return string
      */
-    public function render(Zend_View_Interface $view = null)
+    public function render(?Zend_View_Interface $view = null)
     {
         if (null !== ($disposition = $this->getDisposition())) {
             $this->addClass(static::$_dispositionClasses[$disposition]);

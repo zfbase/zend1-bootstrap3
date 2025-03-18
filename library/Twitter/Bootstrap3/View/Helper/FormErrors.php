@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Twitter Bootstrap v.3 Form for Zend Framework v.1
  * 
@@ -24,12 +25,12 @@ class Twitter_Bootstrap3_View_Helper_FormErrors extends Zend_View_Helper_FormErr
      * @param  array $options
      * @return string
      */
-    public function formErrors($errors, array $options = null)
+    public function formErrors($errors, ?array $options = null)
     {
         if (empty($options['class'])) {
             $options['class'] = 'help-block';
         }
-        
+
         return parent::formErrors($errors, $options);
     }
 }

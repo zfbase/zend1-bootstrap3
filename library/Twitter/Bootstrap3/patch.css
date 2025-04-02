@@ -17,3 +17,24 @@ input[type=range]:after {
     padding-left: 0.5em;
     content: attr(data-value);
 }
+
+/** file upload button **/
+.btn-file {
+	position: relative;
+	overflow: hidden;
+}
+.btn-file input[type=file] {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 100px;
+	text-align: right;
+	filter: alpha(opacity=0);
+	opacity: 0;
+	outline: none;
+	background: white;
+	cursor: inherit;
+	display: block;
+}

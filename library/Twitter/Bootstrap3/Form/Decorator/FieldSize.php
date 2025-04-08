@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Twitter Bootstrap v.3 Form for Zend Framework v.1
  *
@@ -46,7 +47,7 @@ class Twitter_Bootstrap3_Form_Decorator_FieldSize extends Zend_Form_Decorator_Ht
             $element->setAttrib('dimension', null);
         }
 
-        $class = trim($class || '');
+        $class = trim($class ?: '');
         if (!empty($class)) {
             $this->setOption('class', $class);
         } else {

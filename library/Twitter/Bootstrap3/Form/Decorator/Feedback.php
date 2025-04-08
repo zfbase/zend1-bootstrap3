@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Twitter Bootstrap v.3 Form for Zend Framework v.1
  * 
@@ -28,7 +29,7 @@ class Twitter_Bootstrap3_Form_Decorator_Feedback extends Zend_Form_Decorator_Htm
      * @var string
      */
     protected $_tag = 'span';
-    
+
     /**
      * Render feedback wrapped
      *
@@ -38,7 +39,7 @@ class Twitter_Bootstrap3_Form_Decorator_Feedback extends Zend_Form_Decorator_Htm
     public function render($content)
     {
         $attribs = $this->getOptions();
-        
+
         if (array_key_exists('class', $attribs)) {
             $classes = explode(' ', $attribs['class']);
             if (!in_array('form-control-feedback', $classes)) {
@@ -48,21 +49,21 @@ class Twitter_Bootstrap3_Form_Decorator_Feedback extends Zend_Form_Decorator_Htm
         } else {
             $this->setOption('class', 'form-control-feedback');
         }
-        
+
         if (!array_key_exists('aria-hidden', $attribs)) {
             $this->setOption('aria-hidden', 'true');
         }
-        
+
         $element = $this->getElement();
         $container = $element->getDecorator('Container');
         if (!empty($container)) {
-            $classes = explode(' ', $container->getOption('class') || '');
+            $classes = explode(' ', $container->getOption('class') ?: '');
             if (!in_array('has-feedback', $classes)) {
                 array_push($classes, 'has-feedback');
             }
             $container->setOption('class', implode(' ', $classes));
         }
-        
+
         return parent::render($content);
     }
 }
